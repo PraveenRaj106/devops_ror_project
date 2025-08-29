@@ -59,6 +59,7 @@ Thumbs.db
 tmp/*
 
 #terraform files
+*.terraform*
 *.tfstate
 *.tfstate.backup
 *.tfvars
