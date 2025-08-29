@@ -39,6 +39,7 @@ Thumbs.db
 *.app
 *.exe
 *.war
+*.env
 
 # Large media files
 *.mp4
@@ -56,3 +57,8 @@ Thumbs.db
 
 # cache
 tmp/*
+
+#terraform files
+*.tfstate
+*.tfstate.backup
+*.tfvars

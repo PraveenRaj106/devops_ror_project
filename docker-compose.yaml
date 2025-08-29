@@ -1,0 +1,23 @@
+version: "3.8"
+
+services:
+  web-app:
+    build: 
+      context: .
+      dockerfile: docker/app/Dockerfile
+    container_name: web-app
+    # env_file: .env
+    expose:
+      - "3000"   # only exposes to internal network, not outside
+
+  nginx:
+    build: 
+      context: .
+      dockerfile: docker/nginx/Dockerfile
+    container_name: web-nginx
+    ports:
+      - "80:80"   # you will access Rails at http://localhost
+    volumes:
+      - ./docker/nginx/default.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - web-app
