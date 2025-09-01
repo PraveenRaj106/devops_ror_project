@@ -31,5 +31,6 @@ phases:
       - echo "Docker Images has been pushed sucessfully"
       - echo "Creating imagedefinitions.json file..."
       - printf '[{"name":"web-app","imageUri":"905418229997.dkr.ecr.ap-south-1.amazonaws.com/web-app"},{"name":"web-nginx","imageUri":"905418229997.dkr.ecr.ap-south-1.amazonaws.com/web-nginx"}]' > imagedefinitions.json
+      
 artifacts:
   files: imagedefinitions.json
