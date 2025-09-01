@@ -21,9 +21,9 @@ resource "aws_lb_target_group" "my_tg" {
   target_type = "instance"
 
   health_check {
-    path                = "/"
+    path                = "/users/sign_in"
     protocol            = "HTTP"
-    matcher             = "302"
+    matcher             = "200"
     interval            = 40
     timeout             = 30
     healthy_threshold   = 2
