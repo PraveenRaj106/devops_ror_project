@@ -1,0 +1,31 @@
+version: 0.2
+phases:
+  pre_build:
+    commands:
+      - echo "Installing Docker if not available..."
+      # Docker is usually pre-installed on CodeBuild, but verify
+      - |
+        if ! command -v docker &> /dev/null; then
+          echo "Docker not found, installing..."
+          yum update -y
+          yum install -y docker
+          service docker start
+          usermod -a -G docker ec2-user
+        fi
+      - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+  build:
+    commands:
+      # - echo "Hello World"
+      - echo "Building Docker images..."
+      - docker build -t web-app -f docker/app/Dockerfile .
+      - docker build -t web-nginx -f docker/nginx/Dockerfile .
+
+  post_build:
+    commands:
+      - echo "Pushing Docker Images"
+      - aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 905418229997.dkr.ecr.ap-south-1.amazonaws.com
+      - docker tag web-app:latest 905418229997.dkr.ecr.ap-south-1.amazonaws.com/web-app:latest
+      - docker push 905418229997.dkr.ecr.ap-south-1.amazonaws.com/web-app:latest
+      - docker tag web-nginx:latest 905418229997.dkr.ecr.ap-south-1.amazonaws.com/web-nginx:latest
+      - docker push 905418229997.dkr.ecr.ap-south-1.amazonaws.com/web-nginx:latest
+      - echo "Docker Images has been pushed sucessfully"
