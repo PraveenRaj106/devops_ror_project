@@ -29,3 +29,5 @@ phases:
       - docker tag web-nginx:latest 905418229997.dkr.ecr.ap-south-1.amazonaws.com/web-nginx:latest
       - docker push 905418229997.dkr.ecr.ap-south-1.amazonaws.com/web-nginx:latest
       - echo "Docker Images has been pushed sucessfully"
+  artifacts:
+  files: imagedefinitions.json
