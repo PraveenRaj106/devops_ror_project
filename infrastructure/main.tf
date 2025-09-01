@@ -24,6 +24,7 @@ module "alb" {
 module "ec2" {
   source = "./modules/ec2"
 
+  instance_type = var.instance_type
   private_subnet_ids  = module.vpc.private_subnet_ids
   ecs_sg              = module.vpc.ecs_sg
   profile_arn         = module.iam.profile_arn
