@@ -43,7 +43,7 @@ resource "aws_ecs_task_definition" "demo_task" {
       portMappings = [
         {
           containerPort = 80
-          hostPort      = 0
+          hostPort      = 80
           protocol      = "tcp"
         }
       ]
