@@ -29,5 +29,7 @@ phases:
       - docker tag web-nginx:latest 905418229997.dkr.ecr.ap-south-1.amazonaws.com/web-nginx:latest
       - docker push 905418229997.dkr.ecr.ap-south-1.amazonaws.com/web-nginx:latest
       - echo "Docker Images has been pushed sucessfully"
+      - echo "Creating imagedefinitions.json file..."
+      - printf '[{"name":"web-app","imageUri":"%s.dkr.ecr.%s.amazonaws.com/web-app:latest"},{"name":"nginx","imageUri":"%s.dkr.ecr.%s.amazonaws.com/nginx:latest"}]' $AWS_ACCOUNT_ID $AWS_DEFAULT_REGION $AWS_ACCOUNT_ID $AWS_DEFAULT_REGION > imagedefinitions.json
 artifacts:
   files: imagedefinitions.json
