@@ -23,7 +23,7 @@ resource "aws_lb_target_group" "my_tg" {
   health_check {
     path                = "/"
     protocol            = "HTTP"
-    matcher             = "200"
+    matcher             = "302"
     interval            = 30
     timeout             = 5
     healthy_threshold   = 2
