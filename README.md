@@ -35,21 +35,30 @@ Run the Terraform comments on the **`infrastructure`** directory
 VPC with 2 Public and Private Subnets, Public and Private Route Tables, Internet gateway, NAT gateway in 2 Availability Zone(ap-south-1a, ap-south-1b)
 
 ECS Cluster with EC2 Auto-Scaling Capacity Provider.
+
 ECS service to maintain a Task which has Rails and Nginx container in Private Subnet.
+
 Application Load balancer on Public subnet which route the traffic to Nginx container which is on Dynamic port mapping.
+
 Secutiry group will be created for ALB, ECS and RDS separately.
+
 RDS which is multi-az on Private Subnet. While launching container createing and migrating db will be done by the entrypoint file **`docker/app/entrypoint.sh`**.
+
 Nginx will act as reverse proxy for Rails. The config file is present on **`docker/nginx/default.conf`**.
-Create Codepipeline with the custom steps
+
+Create Codepipeline with the custom steps to Automatically Deploy your changes on the ECS Service.
  - CodeBuild with the **`buildspec.yml`** file
  - Deploy on AWS ECS 
-to Automatically Deploy your changes on the ECS Service.
 
 
 ## Issue with the code
 ### Issue
 PostgreSQL RDS is not connecting to Rails App.
+
 Reason: Missing adapter for postgresql.
+
 Changes Done:
+
 Added “adapter: postgresql” in the **`config/database.yml`** so that it will connect to the RDS PostgreSQL.
+
 Added psql version “gem 'pg', '~> 1.5'” in Gemfile.
