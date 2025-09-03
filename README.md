@@ -33,6 +33,7 @@ Run the Terraform comments on the **`infrastructure`** directory
 
 ## How Infrastructure will be created 
 VPC with 2 Public and Private Subnets, Public and Private Route Tables, Internet gateway, NAT gateway in 2 Availability Zone(ap-south-1a, ap-south-1b)
+
 ECS Cluster with EC2 Auto-Scaling Capacity Provider.
 ECS service to maintain a Task which has Rails and Nginx container in Private Subnet.
 Application Load balancer on Public subnet which route the traffic to Nginx container which is on Dynamic port mapping.
