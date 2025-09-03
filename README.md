@@ -58,7 +58,5 @@ PostgreSQL RDS is not connecting to Rails App.
 Reason: Missing adapter for postgresql.
 
 Changes Done:
-
-Added “adapter: postgresql” in the **`config/database.yml`** so that it will connect to the RDS PostgreSQL.
-
-Added psql version “gem 'pg', '~> 1.5'” in Gemfile.
+ - Added “adapter: postgresql” in the **`config/database.yml`** so that it will connect to the RDS PostgreSQL.
+ - Added psql version “gem 'pg', '~> 1.5'” in Gemfile.
